@@ -1,0 +1,138 @@
+<?php
+				require_once("dbtools.inc.php");
+				$link = create_connection();
+				
+				$sql = "SELECT * FROM new_message";
+				$result = execute_sql($link, "bbq_database", $sql);
+				$title;
+				$message;
+				if(mysqli_num_rows($result) != 0)
+				{
+					$num = mysqli_num_rows($result);
+					$row = mysqli_fetch_assoc($result);
+					
+					for($i = 0; $i<$num; $i++)
+					{	
+						$title = $row{"title"};
+						$message = $row{"message"};
+						$new = "<article id=\"first\" class=\"container box style2\"><header><h2>".$title."</h2><div style=\"text-align:left\">".$message."</div></header><div class=\"inner gallery\"></div></article>";
+						
+						echo $new;
+						
+						$result++;
+						$row = mysqli_fetch_assoc($result);
+					}
+				}
+			?>
+
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+	
+		<title>餐點介紹</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/Introduction.css" />
+		
+	</head>
+	
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<h1>最新消息</h1>
+				</header>
+				<footer>
+					<a href="#first" class="button style2 scrolly">前去瞧瞧</a>
+				</footer>
+			</section>
+			
+			<?php
+				require_once("dbtools.inc.php");
+				$link = create_connection();
+				
+				$sql = "SELECT * FROM new_message";
+				$result = execute_sql($link, "bbq_database", $sql);
+				
+				if(mysqli_num_rows($result) != 0)
+				{
+					$num = mysqli_num_rows($result);
+					$row = mysqli_fetch_assoc($result);
+					
+					for($i = 0; $i<$num; $i++)
+					{	
+						$title = $row{"title"};
+						$message = $row{"message"};
+						$new = "<article id=\"first\" class=\"container box style2\"><header><h2>".$title."</h2><div style=\"text-align:left\">".$message."</div></header><div class=\"inner gallery\"></div></article>";
+						
+						echo $new;
+						
+						$result++;
+						$row = mysqli_fetch_assoc($result);
+					}
+				}
+			?>
+
+		<!-- Total -->
+			<article id="first" class="container box style2">
+				<header>
+					<h2><?php echo $title ?></h2>
+					<div style="text-align:left">配合季節的轉變，我們將會為您呈上當季最為新鮮的蔬菜，讓您可以在享用美食的過程當中，也能感受到季節的氣息。</div>
+				</header>
+				<div class="inner gallery">
+				</div>
+			</article>
+			
+			<article class="container box style2">
+				<header>
+					<h2>Enjoy</h2>
+					<div style="text-align:left">配合季節的轉變，我們將會為您呈上當季最為新鮮的蔬菜，讓您可以在享用美食的過程當中，也能感受到季節的氣息。</div>
+				</header>
+				<div class="inner gallery">
+				</div>
+			</article>
+
+		<!-- Return to Header -->	
+			<section id="last">
+				<form method="post" action="#">
+					<div class="row 50%">
+						<div class="12u$">
+							<ul class="actions">
+								<footer>
+									<a href="#header" class="button style2 scrolly">回到最上面</a>
+								</footer>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</section>
+
+		<!-- Go to Home Page -->	
+			<<section id="last">
+				<form method="post" action="Home.html">
+					<div class="row 50%">
+						<div class="12u$">
+							<ul class="actions">
+								<footer>
+									<input type="submit" value="回首頁" />
+								</footer>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</section>
+			
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+	
+</html>
